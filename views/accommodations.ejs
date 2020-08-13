@@ -1,0 +1,32 @@
+<%-  include('partials/header') %>
+
+<!-- <form action="/accommodations" method="POST">
+    <div class="Container ">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" value="<%= place %>" disabled>
+            <div class="input-group-append">
+             <button class="btn btn-outline-secondary btn-primary" type="submit" id="button-addon2" disabled>Search</button> 
+            </div>
+          </div>
+    </div>
+</form> -->
+<div class="container">
+    <div class="accommodations-container">
+        <div class="row">      
+            <% accommodations.forEach(function(accommodation){ %> 
+                <div class="card col-md-6">
+                    <img src="<%= accommodation.image %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= accommodation.name %></h5>
+                      <p class="card-text"><%= accommodation.description.substring(0, 100) %></p>
+                      <a href="/search/<%= accommodation._id %>"><input type="button" value="More Info"></a>
+                    </div>
+                </div>
+                
+            <% }) %> 
+        </div>
+    </div>
+   
+</div>
+
+<%- include('partials/footer') %>

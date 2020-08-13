@@ -1,0 +1,169 @@
+body{
+    background: url("/background.jpg");
+}
+
+
+
+header{
+    text-align: center;
+}
+header img{
+    height: 150px;
+    width: 100%;
+}
+
+nav{
+    margin: 0;
+    background-color: #333;
+    padding: 15px;
+}
+nav a{
+    color: white;
+}
+
+li i{
+    margin-right: 5px;
+}
+
+nav a:hover{
+    color: red;
+    text-decoration: none;
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+nav li{
+    padding: 10px;
+    display: inline;
+}
+
+.right-nav{
+    right: 0;
+    float: right;
+}
+
+.card img{
+    width: 100%;
+    height: 250px;
+   
+}
+.card{
+    width: 18rem;
+    margin: 10px;
+    padding: 0;
+}
+
+.img-thumbnail{
+    padding: 0;
+    border-radius: 25px;
+    border-radius: 25px 25px 0 0;
+    margin-bottom: 10px;
+}
+
+.accommodation{
+    border: 0.5px solid black;
+    border-radius: 25px;
+}
+.accommodation img{
+    height: 450px;
+    width: 100%;
+    margin-top: 0 ;
+    margin-left: 0;
+}
+#accommodation-header{
+    background-color: rgb(209, 222, 248);
+}
+.apply{
+    color: white;
+    right: 25px;
+    position:absolute;
+    bottom:15px;
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: royalblue;
+}
+input[type="button"] {
+    background-color: royalblue;
+    border-radius: 25px;
+    color: white;
+}
+
+.form-container{
+    background-color: white;
+    padding: 10px 30px;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    margin-left: 25%;
+    margin-right:25%;
+    border: 1px solid royalblue;
+}
+
+.form-head{
+    color: royalblue;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 30px;
+}
+
+.accommodations-container{
+    background-color: white;
+    padding: 10px 30px;
+    border: 1px solid royalblue;
+}
+.show-container{
+    background-color: white;
+    padding: 5px;
+    border: 1px solid royalblue;
+}
+
+.form-control{
+    margin: 2px 12px;
+}
+
+.search-container .form-control{
+    margin: 0;
+}
+
+.search-container{
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-right:25%; 
+    text-align: center;
+}
+
+.search-container button{
+    color: white;
+    background-color: royalblue;
+}
+
+.search-container input{
+    border-radius: 25px;
+}
+.search-container img{
+    height: 90px;
+    width: 70%;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+footer{
+    color: white;
+    margin: 0;
+    margin-top: 30px;
+    width: 100%;
+    background-color: #333;
+    padding: 15px 0;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+}
+footer i{
+    margin: 5px;
+}
+footer a{
+    color: white;
+    text-decoration: none;
+}
