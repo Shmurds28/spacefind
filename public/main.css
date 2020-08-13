@@ -97,8 +97,8 @@ input[type="button"] {
     padding: 10px 30px;
     margin-bottom: 30px;
     margin-top: 5px;
-    margin-left: 25%;
-    margin-right:25%;
+    margin-left: 15%;
+    margin-right: 15%;
     border: 1px solid royalblue;
 }
 
@@ -112,6 +112,10 @@ input[type="button"] {
 .accommodations-container{
     background-color: white;
     padding: 10px 30px;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    margin-left: 10%;
+    margin-right:10%;
     border: 1px solid royalblue;
 }
 .show-container{
@@ -151,8 +155,8 @@ input[type="button"] {
 }
 footer{
     color: white;
-    margin: 0;
-    margin-top: 30px;
+    /* margin: 0; */
+    /* margin-top: 30px; */
     width: 100%;
     background-color: #333;
     padding: 15px 0;

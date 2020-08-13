@@ -24,7 +24,7 @@ app.get("/", function(req, res){
     res.render("landing");
 });
 
-//Search results route
+//accommodations route
 app.get("/accommodations", function(req, res){
     var place = req.body.place;
    
@@ -36,6 +36,7 @@ app.get("/accommodations", function(req, res){
         }
     });
 });
+
 
 //Show Accommodation details route
 app.get("/accommodations/:id", function(req, res){
@@ -59,6 +60,11 @@ app.get("/login", function(req, res){
 //Register Route - Get register form
 app.get("/register", function(req, res){
     res.render("register");
+});
+
+//Register route
+app.post("/register", function(req, res){
+    res.send("Registered!");
 });
 
 app.listen( process.env.PORT || "5000", function(){
