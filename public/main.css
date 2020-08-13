@@ -86,7 +86,7 @@ nav li{
     border-radius: 25px;
     background-color: royalblue;
 }
-input[type="button"] {
+input[type="submit"] {
     background-color: royalblue;
     border-radius: 25px;
     color: white;

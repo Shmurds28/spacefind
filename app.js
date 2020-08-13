@@ -3,7 +3,9 @@ var app = express();
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var accommodation = require("./models/accommodation");
+var student = require("./models/students");
 var test = require("./seeds");
+const students = require("./models/students");
 
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/space_find");
@@ -64,9 +66,26 @@ app.get("/register", function(req, res){
 
 //Register route
 app.post("/register", function(req, res){
-    res.send("Registered!");
+   var name = req.body.name;
+    var surname = req.body.surname; 
+    var gender = req.body.gender;
+    var phone = req.body.phone;
+    var email = req.body.email;
+    var studentNumber = req.body.studentNumber;
+    var dob = req.body.dob;
+    var newStudent = {name: name, surname: surname, gender: gender, phone: phone, email: email, studentNumber: studentNumber, dob: dob}
+    //add new student to database
+    student.create(newStudent, function(err, newlyCreated){
+        if(err){
+            //redirect back to the register page if an error is found
+            res.redirect("back");
+        }else{
+            //redirect to the accommodations page
+            res.redirect("/accommodations");
+        }
+    });
 });
 
-app.listen( process.env.PORT || "5000", function(){
+app.listen( process.env.PORT || "9000", function(){
     console.log("SpaceFind App has started!!!");
 });
