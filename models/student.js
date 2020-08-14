@@ -7,7 +7,9 @@ StudentsSchema = new mongoose.Schema({
     phone: String,
     email: String,
     studentNumber: String,
-    dob: Date
+    dob: Date,
+    qualification: String,
+    yearOfStudy: String
 });
 
 module.exports = mongoose.model("student", StudentsSchema);

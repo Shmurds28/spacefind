@@ -11,9 +11,27 @@
                     <p><%= accommodation.description %></p>
                     <p><i class="fas fa-phone-alt"></i> <%= accommodation.phone %></p>
                     <p><i class="fas fa-envelope"></i> <a href="#"><%= accommodation.email %></a> </p>
-                    <button class="apply">Apply</button>
+                    <input class="apply" type="submit" value="Apply">
                 </div>
             </div> 
+    </div>
+    <div class="card card-body residences-container">
+        <div class="text-right">
+            <a href="/accommodations/<%= accommodation._id %>/residences/new">
+                <input type="submit" value="Add New Residence">
+            </a>
+        </div>
+        <hr>
+       <% accommodation.residences.forEach(function(residence){ %>
+        
+            <div class="residence">
+                <strong> <%= residence.name %> - <%= residence.price %> </strong>
+                <input class="float-right " type="submit" value="View">
+                <p><%= residence.type %> room </p>
+            </div>
+       
+       <% }) %>
+        
     </div>
 </div>
 <%- include('partials/footer') %>    

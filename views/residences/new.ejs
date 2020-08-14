@@ -1,0 +1,37 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="container">
+    <div class="form-container">
+        <div class="form-head">
+            <h1>New Residence Registration</h1>
+        </div>
+        <form action="/accommodations/<%= accommodation._id %>/residences/new" method="POST">
+            <div class="form-group row">
+                <input class="form-control col" type="text" name="residence[name]" placeholder="Residence Name">
+            </div>
+            <div class="form-group row">
+                <input class="form-control col" type="address" name="residence[address]" placeholder="Residence Address">
+            </div>
+            <div class="form-group row">
+                <input class="form-control col" type="number" name="residence[NoOfStudents]" placeholder="Number of students living">
+            </div>
+            <div class="form-group row">
+                <input class="form-control col" type="number" name="residence[price]" placeholder="Price">
+            </div>
+            <div class="form-group row">
+                <input class="form-control col" type="text" name="residence[type]" placeholder="Type Of Residence">
+            </div>
+            <div class="form-group row">
+                <input class="form-control col" type="text" name="residence[images]" placeholder="Image url">
+            </div>
+            <div class="form-group row">
+                <input class="form-control" type="submit" value="Submit">
+                <input class="form-control" type="submit" value="Reset">
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+
+<%-include('../partials/footer.ejs') %>

@@ -19,10 +19,12 @@
                     <div class="card-body">
                       <h5 class="card-title"><%= accommodation.name %></h5>
                       <p class="card-text"><%= accommodation.description.substring(0, 100) %></p>
-                      <a href="/accommodations/<%= accommodation._id %>"><input type="button" value="More Info"></a>
+                      <form class="show-button-form" action="/accommodations/<%= accommodation._id %>" method="get">
+                        <input type="submit" value="More Info">
+                    </form>
                     </div>
                 </div>
-                
+                <hr>
             <% }) %> 
         </div>
     </div>

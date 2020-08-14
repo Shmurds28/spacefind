@@ -6,7 +6,13 @@ AccommodationsSchema = new mongoose.Schema({
     address: String,
     phone: String,
     email: String,
-    description: String
+    description: String,
+    residences: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "residence"
+        }
+    ]
 });
 
 module.exports = mongoose.model("accommodation", AccommodationsSchema);

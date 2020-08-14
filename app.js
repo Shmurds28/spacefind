@@ -3,9 +3,9 @@ var app = express();
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var accommodation = require("./models/accommodation");
-var student = require("./models/students");
+var student = require("./models/student");
 var test = require("./seeds");
-const students = require("./models/students");
+var residence = require("./models/residence");
 
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/space_find");
@@ -42,11 +42,14 @@ app.get("/accommodations", function(req, res){
 
 //Show Accommodation details route
 app.get("/accommodations/:id", function(req, res){
+    //find the accommodation usind an id
    accommodation.findById(req.params.id, function(err, foundAcc){
        if(err){
+           //redirect back to accommodations if there is an error
            console.log(err);
-           res.redirect("/accommodations");
+           res.redirect("back");
        }else{
+           //go to the show page if accommodation is found successfully
         res.render("show", {accommodation: foundAcc} );
        }
    })
@@ -73,7 +76,9 @@ app.post("/register", function(req, res){
     var email = req.body.email;
     var studentNumber = req.body.studentNumber;
     var dob = req.body.dob;
-    var newStudent = {name: name, surname: surname, gender: gender, phone: phone, email: email, studentNumber: studentNumber, dob: dob}
+    var qualification = req.body.qualification;
+    var yearOfStudy = req.body.yearOfStudy;
+    var newStudent = {name: name, surname: surname, gender: gender, phone: phone, email: email, studentNumber: studentNumber, dob: dob, qualification: qualification, yearOfStudy: yearOfStudy}
     //add new student to database
     student.create(newStudent, function(err, newlyCreated){
         if(err){
@@ -82,6 +87,43 @@ app.post("/register", function(req, res){
         }else{
             //redirect to the accommodations page
             res.redirect("/accommodations");
+        }
+    });
+});
+
+//====================================
+//  RESIDENCES ROUTES
+//====================================
+
+//new residendence route
+app.get("/accommodations/:id/residences/new", function(req, res){
+    accommodation.findById(req.params.id, function(err, accommodation){
+        if(err){
+            res.redirect("back");
+        }else{
+            res.render("residences/new", {accommodation: accommodation} );
+        }
+    });
+});
+
+//post the new residence route
+app.post("/accommodations/:id/residences/new", function(req, res){
+    accommodation.findById(req.params.id, function(err, accommodation){
+        if(err){
+            console.log(err);
+            res.redirect("back");
+        }else{
+            residence.create(req.body.residence, function(err, residence){
+                if(err){
+                    console.log(err);
+                    res.redirect("/accommodations/" + accommodation._id);
+                }else{
+                    residence.save();
+                    accommodation.residences.push(residence);
+                    accommodation.save();
+                    res.redirect("/accommodations/" + accommodation._id);
+                }
+            });
         }
     });
 });
