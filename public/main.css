@@ -3,6 +3,10 @@ body{
     background-size: cover;
 }
 
+.card h4{
+    color: royalblue;
+}
+
 header{
     text-align: center;
 }
@@ -85,12 +89,11 @@ nav li{
     border-radius: 25px;
     background-color: royalblue;
 }
-input[type="submit"] {
+.form-container input[type="submit"] {
     background-color: royalblue;
     border-radius: 25px;
     color: white;
     border: 2px solid white;
-    height: 50px;
 }
 
 .form-container{
@@ -119,7 +122,19 @@ input[type="submit"] {
     margin-right:10%;
     border: 1px solid royalblue;
 }
-.accommodations-container hr{
+
+.info-button{
+    float: right;
+    height: 50px;
+    width: 90px;
+    bottom: 0;
+    background-color: royalblue;
+    color: white;
+    border-radius: 25px;
+    border: 2px solid white;
+}
+
+hr{
     color: royalblue;
 }
 
@@ -141,46 +156,52 @@ input[type="submit"] {
     margin-bottom: 70px;
 }
 
-.residence input[type="submit"]{
-   width: 70px;
+.view-residence-button{
    height: 30px;
+   width: 80px;
+   margin-right: 8px;
+   background-color: royalblue;
+   background-color: royalblue;
+   color: white;
+   border-radius: 25px;
+   border: 2px solid white;
 }
 
-.card-body input[type="submit"]{
-    float: right;
-    width: 120px;
-    
+.delete-residence-button{
+    height: 30px;
+    width: 80px;
+    background-color: red;
+    border-radius: 25px;
+    color: white;
+    border: 2px solid white;
+}
+
+.delete-accommodation-button{
+    color: white;
+    left: 25px;
+    position:absolute;
+    bottom:15px;
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: red;
+    border: 2px solid white;
+}
+
+
+.new-residence-button{
+    width: 160px;
+    height: 50px;
+    background-color: royalblue;
+    color: white;
+    border-radius: 25px;
+    border: 2px solid white;
 }
 
 .form-control{
     margin: 2px 12px;
 }
 
-.search-container .form-control{
-    margin: 0;
-}
-
-.search-container{
-    margin-top: 10%;
-    margin-left: 25%;
-    margin-right:25%; 
-    text-align: center;
-}
-
-.search-container button{
-    color: white;
-    background-color: royalblue;
-}
-
-.search-container input{
-    border-radius: 25px;
-}
-.search-container img{
-    height: 90px;
-    width: 70%;
-    margin-top: 0;
-    margin-bottom: 5px;
-}
 footer{
     color: white;
     margin-top: 30px;

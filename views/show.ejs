@@ -11,22 +11,29 @@
                     <p><%= accommodation.description %></p>
                     <p><i class="fas fa-phone-alt"></i> <%= accommodation.phone %></p>
                     <p><i class="fas fa-envelope"></i> <a href="#"><%= accommodation.email %></a> </p>
-                    <input class="apply" type="submit" value="Apply">
+                    <input class="apply" type="submit" value="Add Administrator">
+                    <form action="/accommodations/<%= accommodation._id %>?_method=DELETE" method="POST">
+                        <input  class="delete-accommodation-button" type="submit" value="Delete">
+                    </form>
+                    
                 </div>
             </div> 
     </div>
     <div class="card card-body residences-container">
-        <div class="text-right">
+        <h4> Available residences from <%= accommodation.name %> </h4>
             <a href="/accommodations/<%= accommodation._id %>/residences/new">
-                <input type="submit" value="Add New Residence">
+                <input class="float-right new-residence-button" type="submit" value="Add New Residence">
             </a>
-        </div>
         <hr>
+
        <% accommodation.residences.forEach(function(residence){ %>
         
             <div class="residence">
                 <strong> <%= residence.name %> - <%= residence.price %> </strong>
-                <input class="float-right " type="submit" value="View">
+                <form action="/accommodations/<%= accommodation._id %>/residences/ <%= residence._id %>?_method=DELETE" method="POST">
+                    <input class="float-right delete-residence-button" type="submit" value="Delete">
+                </form>
+                <input class="float-right view-residence-button" type="submit" value="View">
                 <p><%= residence.type %> room </p>
             </div>
        
