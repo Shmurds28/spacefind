@@ -43,7 +43,7 @@ app.get("/accommodations", function(req, res){
         if(err){
             console.log(err)
         }else{
-            res.render("accommodations", {place: place, accommodations: FoundAcc});
+            res.render("accommodations/accommodations", {place: place, accommodations: FoundAcc});
         }
     });
 });
@@ -68,7 +68,7 @@ app.post("/accommodations/new", function(req, res){
             console.log(err);
             res.redirect("back");
         }else{
-            res.redirect("/accommodations");
+            res.redirect("accommodations/accommodations");
         }
     });
 });
@@ -84,7 +84,7 @@ app.get("/accommodations/:id", function(req, res){
            res.redirect("back");
        }else{
            //go to the show page if accommodation is found successfully
-        res.render("show", {accommodation: foundAcc} );
+        res.render("accommodations/show", {accommodation: foundAcc} );
        }
    });
    
@@ -96,7 +96,7 @@ app.delete("/accommodations/:id", function(req, res){
         if(err){
             res.redirect("back");
         }else{
-            res.redirect("/accommodations");
+            res.redirect("accommodations/accommodations");
         }
     })
 });
@@ -158,7 +158,7 @@ app.get("/accommodations/:id/residences/new", function(req, res){
     });
 });
 
-//post the new residence route
+//CREATE new residence route
 app.post("/accommodations/:id/residences/new", function(req, res){
     Accommodation.findById(req.params.id, function(err, accommodation){
         if(err){
@@ -180,14 +180,26 @@ app.post("/accommodations/:id/residences/new", function(req, res){
     });
 });
 
+app.get("/accommodations/:id/residences/:resId", function(req, res){
+    Residence.findById(req.params.resId, function(err, foundRes){
+        if(err){
+            console.log(err);
+            res.render("back");
+        }else{
+            console.log(foundRes);
+            res.render("residences/view");
+        }
+    });
+});
+
 //Delete residence route
-app.delete("/accommodations/:id/residences/:res_id", function(req, res){
-    Residence.findByIdAndRemove(req.params.res_id, function(err){
+app.delete("/accommodations/:id/residences/:resId", function(req, res){
+    Residence.findByIdAndRemove(req.params.resId, function(err){
         if(err){
             console.log(err);
             res.redirect("back");
         }else{
-            res.redirect("accommodations/" + req.params.id);
+            res.redirect("/accommodations/" + req.params.id);
         }
     });
 });

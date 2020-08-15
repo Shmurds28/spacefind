@@ -1,5 +1,4 @@
-<%- include('partials/header') %>  
-
+<%- include('../partials/header') %>  
 
 <div class="container">
     <div class="show-container">
@@ -30,11 +29,14 @@
        <% accommodation.residences.forEach(function(residence){ %>
         
             <div class="residence">
-                <strong> <%= residence.name %> - <%= residence.price %> </strong>
+                <strong> <%= residence.name %> - R<%= residence.price %> </strong>
                 <form action="/accommodations/<%= accommodation._id %>/residences/ <%= residence._id %>?_method=DELETE" method="POST">
                     <input class="float-right delete-residence-button" type="submit" value="Delete">
                 </form>
-                <input class="float-right view-residence-button" type="submit" value="View">
+                <form action="/accommodations/<%= accommodation._id %>/residences/ <%= residence._id %>" method="get">
+                    <input class="float-right view-residence-button" type="submit" value="View">
+                </form>
+                
                 <p><%= residence.type %> room </p>
             </div>
        
@@ -42,4 +44,4 @@
         
     </div>
 </div>
-<%- include('partials/footer') %>    
+<%- include('../partials/footer') %>    
