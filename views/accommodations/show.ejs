@@ -11,10 +11,13 @@
                     <p><%= accommodation.description %></p>
                     <p><i class="fas fa-phone-alt"></i> <%= accommodation.phone %></p>
                     <p><i class="fas fa-envelope"></i> <a href="#"><%= accommodation.email %></a> </p>
-                    <input class="apply" type="submit" value="Add Administrator">
-                    <form action="/accommodations/<%= accommodation._id %>?_method=DELETE" method="POST">
-                        <input  class="delete-accommodation-button" type="submit" value="Delete">
-                    </form>
+
+                    <div class="show-container-buttons">
+                        <input class="apply" type="submit" value="Add Administrator">
+                        <form action="/accommodations/<%= accommodation._id %>?_method=DELETE" method="POST">
+                            <input  class="delete-accommodation-button" type="submit" value="Delete">
+                        </form>
+                    </div>
                     
                 </div>
             </div> 
