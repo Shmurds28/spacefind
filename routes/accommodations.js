@@ -43,7 +43,7 @@ app.post("/accommodations/new", function(req, res){
             console.log(err);
             res.redirect("back");
         }else{
-            res.redirect("accommodations/accommodations");
+            res.redirect("/accommodations");
         }
     });
 });
