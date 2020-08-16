@@ -51,7 +51,7 @@ app.post("/accommodations/new", function(req, res){
 
 //Show Accommodation details route
 app.get("/accommodations/:id", function(req, res){
-    //find the accommodation usind an id
+    //find the accommodation usind an idgi
    Accommodation.findById(req.params.id).populate("residences").exec(function(err, foundAcc){
        if(err){
            //redirect back to accommodations if there is an error
