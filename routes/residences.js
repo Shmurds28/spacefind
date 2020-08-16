@@ -44,22 +44,22 @@ app.post("/accommodations/:id/residences/new", function(req, res){
 
 app.get("/accommodations/:id/residences/:resId", function(req, res){
     //res.render("residences/view");
-    console.log(ObjectId(req.params.resId))
+    //console.log(ObjectId(req.params.resId))
 
-    // Residence.findById(ObjectId(req.params.resId), function(err, residence){
-    //     if(err){
-    //         console.log(err);
-    //         res.render("back");
-    //     }else{
-    //         // console.log(mongoose.Schema.Types.ObjectId(req.params.resId));
-    //         res.render("residences/view", {residence: residence});
-    //     }
-    // });
+    Residence.findById(req.params.resId, function(err, residence){
+        if(err){
+            console.log(err);
+            res.render("back");
+        }else{
+            // console.log(mongoose.Schema.Types.ObjectId(req.params.resId));
+            res.render("residences/view", {residence: residence});
+        }
+    });
 });
 
 //Delete residence route
 app.delete("/accommodations/:id/residences/:resId", function(req, res){
-    Residence.findByIdAndDelete(mongoose.Schema.Types.ObjectId(req.params.resId), function(err){
+    Residence.findByIdAndRemove(req.params.resId, function(err){
         if(err){
             console.log(err);
             res.redirect("back");
