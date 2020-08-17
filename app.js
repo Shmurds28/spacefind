@@ -39,7 +39,7 @@ app.get("/login", function(req, res){
 
 //Apply route
 app.get("/apply", function(req, res){
-    res.send("Okay wassup whosit!");
+    res.render("apply");
 });
 
 
