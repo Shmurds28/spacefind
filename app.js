@@ -37,6 +37,11 @@ app.get("/login", function(req, res){
     res.render("login");
 });
 
+//Apply route
+app.get("/apply", function(req, res){
+    res.send("Okay wassup whosit!");
+});
+
 
 // Use routes
 app.use(studentRoutes);

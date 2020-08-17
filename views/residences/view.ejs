@@ -3,16 +3,33 @@
 <div class="container">
     <div class="view-container">
         <header>
-            <h4>Name of the residence</h4>
+            <h4> <%= residence.name %></h4>
         </header>
         <div class="residence-photos">
-            <img src="/06Dunes-kitchen.jpg" alt="">
+            <img src="<%= residence.images %>" alt="">
         </div>
-        <h4>Details About the accommodation</h4>
-            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. </p>
+        <!-- <h4>Details About the accommodation</h4> -->
+            <!-- <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. </p> -->
         <div>
+            <p><strong>Description</strong></p>
+            <ul>
+                <li> <%= residence.description %> </li>
+            </ul>
+            <p>
+                <strong>Room Type: </strong><%= residence.type %>
+            </p>
+            <p>
+                <strong>Monthly Rental: </strong>R<%= residence.price %>
+            </p>
 
         </div>
+        <form action="/accommodations/<%= accommodation_id %>/residences/<%= residence._id %>?_method=DELETE" method="POST">
+            <input class="delete-residence-button" type="submit" value="Delete">
+        </form>
+        <form action="/apply" method="GET">
+            <input class="apply" type="submit" value="Apply">
+        </form>
+        
     </div>
 </div>
 

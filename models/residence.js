@@ -6,7 +6,8 @@ ResidencesSchema = new mongoose.Schema({
     NoOfStudents: Number,
     price: String,
     images: String,
-    type: String
+    type: String,
+    description: String
 });
 
 module.exports = mongoose.model("residence", ResidencesSchema);

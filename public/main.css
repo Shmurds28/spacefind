@@ -14,7 +14,7 @@ header{
     text-align: center;
 }
 header img{
-    height: 150px;
+    height: 110px;
     width: 100%;
 }
 
@@ -86,14 +86,13 @@ nav button{
     background-color: rgb(209, 222, 248);
 }
 .apply{
+    float: right;
     color: white;
-    right: 25px;
-    position:absolute;
-    bottom:15px;
     width: 150px;
     height: 50px;
     border-radius: 25px;
     background-color: royalblue;
+    border: 2px solid white;
 }
 .form-container input[type="submit"] {
     background-color: royalblue;
@@ -174,6 +173,12 @@ hr{
 
 }
 
+.view-container header{
+    color: white;
+    background-color: royalblue;
+    text-align: center;
+}
+
 .residence-photos{
     width: 100%;
     margin: 20px 0 20px 0;
@@ -181,22 +186,30 @@ hr{
 
 .view-residence-button{
    height: 30px;
-   width: 80px;
+   width: 120px;
    margin-right: 8px;
    background-color: royalblue;
    background-color: royalblue;
    color: white;
    border-radius: 25px;
    border: 2px solid white;
+  
+}
+
+.view-container form{
+    display: inline;
 }
 
 .delete-residence-button{
-    height: 30px;
-    width: 80px;
+    /* display: none; */
+    height: 50px;
+    width: 150px;
     background-color: red;
     border-radius: 25px;
     color: white;
     border: 2px solid white;
+    bottom: 1px;
+    
 }
 
 .delete-accommodation-button{
@@ -248,12 +261,12 @@ footer a{
     header img{
         height: 70px;
     }
-    .accommodations-container, .show-container {
+    .accommodations-container, .show-container, .view-container {
       max-width: 100% !important;
       margin-left: 10px !important;
       margin-right: 10px !important;
       padding: 5px;
-      border: 2px solid royalblue;
+      
     }
     .form-container{
       max-width: 100% !important;
@@ -262,7 +275,6 @@ footer a{
       margin-left: 5px !important;
       margin-right: 5px !important;
       padding: 5px;
-      border: 2px solid royalblue;
     }
     .form-container input{
         width: 90%;
@@ -281,5 +293,13 @@ footer a{
     }
     .card{ 
         width: 100%;
+    }
+    .view-container{
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    .residence-photos{
+        width: 50% !important;
+        margin: 0 !important;
     }
   }
