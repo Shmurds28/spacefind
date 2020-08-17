@@ -13,7 +13,7 @@
                     <p><i class="fas fa-envelope"></i> <a href="#"><%= accommodation.email %></a> </p>
 
                     <div class="show-container-buttons">
-                        <input class="apply" type="submit" value="Add Administrator">
+                        <input class="add-admin-button" type="submit" value="Add Administrator">
                         <form action="/accommodations/<%= accommodation._id %>?_method=DELETE" method="POST">
                             <input  class="delete-accommodation-button" type="submit" value="Delete">
                         </form>
@@ -34,9 +34,13 @@
             <div class="residence">
                 <strong> <%= residence.name %> - R<%= residence.price %> </strong>
                 
+                <form action="/apply" method="GET">
+                    <input class="float-right view-residence-button" type="submit" value="Apply">
+                </form>
                 <form action="/accommodations/<%= accommodation._id %>/residences/<%= residence._id %>" method="get">
                     <input class="float-right view-residence-button" type="submit" value="View">
                 </form>
+             
                 
                 <p><%= residence.type %> room </p>
             </div>

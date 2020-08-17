@@ -22,6 +22,7 @@ nav{
     margin: 0;
     background-color: #333;
     padding: 15px;
+    padding-left: 0;
 }
 nav a{
     color: white;
@@ -48,6 +49,11 @@ nav li{
 
 nav button{
     color: white;
+}
+
+.navbar-brand img{
+    height: 50px;
+    margin: 0;
 }
 
 .right-nav{
@@ -188,8 +194,8 @@ hr{
 }
 
 .view-residence-button{
-   height: 30px;
-   width: 120px;
+   height: 35px;
+   width: 90px;
    margin-right: 8px;
    background-color: royalblue;
    background-color: royalblue;
@@ -224,6 +230,18 @@ hr{
     height: 50px;
     border-radius: 25px;
     background-color: red;
+    border: 2px solid white;
+}
+
+.add-admin-button{
+    color: white;
+    right: 25px;
+    position:absolute;
+    bottom:15px;
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+    background-color:royalblue;
     border: 2px solid white;
 }
 
