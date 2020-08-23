@@ -15,10 +15,12 @@
         <div class="row">      
             <% accommodations.forEach(function(accommodation){ %> 
                 <div class="card col-md-6">
-                    <img src="/image1.jpg" class="card-img-top" alt="...">
+                    <img src="data:accommodation/<%=accommodation.image.contentType%>;base64, 
+                    <%=accommodation.image.data.toString('base64')%>" class="card-img-top" alt="..."> 
+                    <!-- <img src="images/<%= accommodation.image.filename%>" class="card-img-top" alt="..."> -->
                     <div class="card-body">
                       <h5 class="card-title"><%= accommodation.name %></h5>
-                      <p class="card-text"><%= accommodation.description.substring(0, 100) %></p>
+                      <p class="card-text"><%= accommodation.description %></p>
                       <form class="show-button-form" action="/accommodations/<%= accommodation._id %>" method="get">
                         <input class="info-button" type="submit" value="More Info">
                     </form>

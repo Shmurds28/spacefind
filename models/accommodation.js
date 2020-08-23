@@ -1,12 +1,16 @@
 var mongoose = require("mongoose");
 
 AccommodationsSchema = new mongoose.Schema({
-    name: String,
-    image: String, 
+    name: String, 
     address: String,
     phone: String,
     email: String,
     description: String,
+    image: { 
+            data: Buffer, 
+            contentType: String 
+        },
+    // imageId: String,
     residences: [
         {
             type: mongoose.Schema.Types.ObjectId,

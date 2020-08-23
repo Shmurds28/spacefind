@@ -14,7 +14,7 @@ header{
     text-align: center;
 }
 header img{
-    height: 110px;
+    height: 100px;
     width: 100%;
 }
 
@@ -163,6 +163,10 @@ hr{
     margin-top: 30px;
     opacity: 90%;
 }
+.show-container img{
+    height: 400px;
+    width: 100%;
+}
 
 .residences-container{
     background-color: #e4e6e8;
@@ -269,6 +273,26 @@ hr{
 
 .form-control{
     margin: 2px 12px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }
 
 footer{
