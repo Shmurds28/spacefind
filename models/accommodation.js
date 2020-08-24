@@ -10,7 +10,6 @@ AccommodationsSchema = new mongoose.Schema({
             data: Buffer, 
             contentType: String 
         },
-    // imageId: String,
     residences: [
         {
             type: mongoose.Schema.Types.ObjectId,

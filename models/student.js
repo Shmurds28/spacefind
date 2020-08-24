@@ -9,7 +9,7 @@ StudentsSchema = new mongoose.Schema({
     studentNumber: String,
     dob: Date,
     qualification: String,
-    yearOfStudy: String
+    yearOfStudy: String,
 });
 
 module.exports = mongoose.model("student", StudentsSchema);
