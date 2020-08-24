@@ -5,7 +5,7 @@
         <div class="form-head">
             <h1>New Residence Registration</h1>
         </div>
-        <form action="/accommodations/<%= accommodation._id %>/residences/new" method="POST">
+        <form action="/accommodations/<%= accommodation._id %>/residences/new" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                 <input class="form-control col" type="text" name="residence[name]" placeholder="Residence Name">
             </div>
@@ -21,8 +21,12 @@
             <div class="form-group row">
                 <input class="form-control col" type="text" name="residence[type]" placeholder="Type Of Residence">
             </div>
+
             <div class="form-group row">
-                <input class="form-control col" type="text" name="residence[images]" placeholder="Image url">
+                <div class="custom-file">
+                    <input type="file" name="multi-files" id="input-files" class="custom-file-input col" multiple>
+                    <label for="file" class="custom-file-label">Choose Accommodation Image</label>
+                </div>
             </div>
             <div class="form-group row">
                 <textarea class="form-control col" name="residence[description]" id="description" cols="30" rows="10" placeholder="Write residence description"></textarea>

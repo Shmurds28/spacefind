@@ -5,7 +5,12 @@ ResidencesSchema = new mongoose.Schema({
     address: String,
     NoOfStudents: Number,
     price: String,
-    images: String,
+    images: [
+        { 
+            data: Buffer, 
+            contentType: String 
+        }
+    ],
     type: String,
     description: String
 });

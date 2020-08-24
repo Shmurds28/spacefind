@@ -4,30 +4,13 @@ var mongoose = require("mongoose");
 var Accommodation = require("../models/accommodation");
 var Residence = require("../models/residence");
 var path = require("path");
-const homeController = require("../controllers/home");
 const uploadController = require("../controllers/upload");
 const upload = require("../middleware/upload");
 const Grid = require("gridfs-stream");
-const cloudinary = require('cloudinary');
-
-const conn = mongoose.createConnection("mongodb://localhost/space_find");
 
 var fs = require('fs');  
 require('dotenv/config'); 
 
-//Init gfs
-let gfs;
-
-conn.once('open', () => {
-    gfs = Grid(conn.db, mongoose.mongo);
-    gfs.collection("photos");
-});
-
-cloudinary.config({ 
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-  });
 
 //================================
 //  ACCOMMODATION ROUTES
@@ -76,7 +59,7 @@ app.post("/accommodations/new", uploadController.uploadFile  ,function(req, res)
             console.log(err);
             res.redirect("back");
         }else{
-            res.render("test", {new: newlyCreated});
+            res.redirect("/accommodations");
         }
     });
 

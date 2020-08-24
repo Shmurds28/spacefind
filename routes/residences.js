@@ -1,9 +1,17 @@
 var express = require("express");
 var app = express();
+var mongoose = require("mongoose");
 var Accommodation = require("../models/accommodation");
 var Residence = require("../models/residence");
-var mongoose = require("mongoose");
-const {ObjectId} = require("mongodb");
+var path = require("path");
+const uploadController = require("../controllers/upload");
+const upload = require("../middleware/upload");
+const Grid = require("gridfs-stream");
+
+
+var fs = require('fs');  
+require('dotenv/config'); 
+
 
 //====================================
 //  RESIDENCES ROUTES
@@ -21,7 +29,19 @@ app.get("/accommodations/:id/residences/new", function(req, res){
 });
 
 //CREATE new residence route
-app.post("/accommodations/:id/residences/new", function(req, res){
+app.post("/accommodations/:id/residences/new", uploadController.uploadFiles , function(req, res){
+   
+    //  console.log(req.files);
+    
+    var images = [];
+    var uploads = req.files;
+    uploads.forEach(function(image){
+        images.push( { 
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + image.filename)), 
+            contentType: 'image/png'
+        });
+    });
+   
     Accommodation.findById(req.params.id, function(err, accommodation){
         if(err){
             console.log(err);
@@ -32,6 +52,7 @@ app.post("/accommodations/:id/residences/new", function(req, res){
                     console.log(err);
                     res.redirect("/accommodations/" + accommodation._id);
                 }else{
+                    residence.images = images;
                     residence.save();
                     accommodation.residences.push(residence);
                     accommodation.save();

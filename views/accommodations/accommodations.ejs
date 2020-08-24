@@ -20,7 +20,7 @@
                     <!-- <img src="images/<%= accommodation.image.filename%>" class="card-img-top" alt="..."> -->
                     <div class="card-body">
                       <h5 class="card-title"><%= accommodation.name %></h5>
-                      <p class="card-text"><%= accommodation.description %></p>
+                      <p class="card-text"><%= accommodation.description.substr(0, 200) %>...</p>
                       <form class="show-button-form" action="/accommodations/<%= accommodation._id %>" method="get">
                         <input class="info-button" type="submit" value="More Info">
                     </form>
