@@ -8,9 +8,10 @@ var methodOverride = require("method-override");
 var accommodationRoutes = require("./routes/accommodations");
 var residenceRoutes = require("./routes/residences");
 var studentRoutes = require("./routes/students");
+var adminRoutes = require("./routes/admins");
 var User = require("./models/user");
+var adminUser = require("./models/adminUser");
 var authenticateMiddleware = require("./middleware/authentication");
-const { isStudent } = require("./middleware/authentication");
 
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/space_find");
@@ -34,9 +35,30 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
+//User config
+passport.use("userLocal", new LocalStrategy({usernameField: 'studentNumber',},User.authenticate()));
+
+passport.serializeUser(function(user, done) { 
+    done(null, user);
+  });
+  
+passport.deserializeUser(function(user, done) {
+    if(user!=null)
+        done(null,user);
+});
+
+//admin config
+passport.use("adminLocal", new LocalStrategy({ usernameField: 'email' }, adminUser.authenticate()));
+passport.serializeUser(function(adminuser, done) { 
+    done(null, adminuser);
+  });
+  
+passport.deserializeUser(function(adminuser, done) {
+    if(adminuser!=null)
+        done(null,adminuser);
+});
+
 
 app.use(function(req, res, next){
     res.locals.isStudent = authenticateMiddleware.isStudent;
@@ -63,20 +85,7 @@ app.get("/test", function(req, res){
 //==================================
 
 
-//Login Route - Get Login form
-app.get("/login", function(req, res){
-    res.render("login");
-});
-
-//LOGIN
-app.post("/login", passport.authenticate("local", {
-    successRedirect: "/accommodations",
-    failureRedirect: "/login"
-}) , function(req, res){
-    
-});
-
-//LOGIN
+//LOGOUT
 app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/");
@@ -90,6 +99,7 @@ app.get("/apply", authenticateMiddleware.isLoggedIn , function(req, res){
 
 // Use routes
 app.use(studentRoutes);
+app.use(adminRoutes);
 app.use(accommodationRoutes);
 app.use(residenceRoutes);
 

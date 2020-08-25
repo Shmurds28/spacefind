@@ -7,12 +7,21 @@ var Student = require("../models/student");
 
 
 function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated("userLocal")){
         return next();
     }else{
-        res.redirect("/login");
+        res.redirect("student/login");
     }
 };
+
+
+function isLoggedInAsAdmin(req, res, next){
+    if(req.isAuthenticated("adminLocal") && (req.user.isAdmin) ){
+        return next();
+    }else{
+        res.render("admins/login");
+    }
+}
 
 function isStudent(req, res){
     Student.find({studentNumber: req.session.username}, function(err, found){
@@ -20,7 +29,7 @@ function isStudent(req, res){
             return false;
         }else{
           
-                return false;
+            return false;
             
         }
     });
@@ -28,5 +37,6 @@ function isStudent(req, res){
 
 module.exports = {
     isLoggedIn: isLoggedIn,
-    isStudent: isStudent
+    isStudent: isStudent,
+    isLoggedInAsAdmin: isLoggedInAsAdmin
 };

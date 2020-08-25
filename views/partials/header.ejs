@@ -28,26 +28,41 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/accommodations">Accommodations <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/accommodations/new">New Accomodation</a>
-                </li>
             </ul>
             <ul class="navbar-nav navbar-right">
-                <li class="nav-item active ">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Students
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/student/login">Login</a>
+                      <a class="dropdown-item" href="/student/register"><i class="fas fa-user-plus"></i>register</a>
+                      <div class="dropdown-divider"></div>
+                      <!-- <a class="dropdown-item" href="/accommodations/new">View Accomodations</a> -->
+                    </div>
+                  </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Admins
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/admin/login">Login</a>
+                      <a class="dropdown-item" href="/admin/register"><i class="fas fa-user-plus"></i>register</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="/accommodations/new">Add Accomodation</a>
+                    </div>
+                  </li>
+
+                
+
                 <li class="nav-item active">
-                    <a class="nav-link" href="/register"><i class="fas fa-user-plus"></i>SignUp</a>
+                    <a class="nav-link" href="/logout">Logout</a>
                 </li>
+                <!-- <li class="nav-item active">
+                    <a class="nav-link" href="/register">SignUp</a>
+                </li>
+                -->
             </ul>
         </div>
     </nav>
 
-    <% if(isStudent){ %>
-
-        <h1>Student</h1>
-
-    <% }else{ %>
-        <h1>not a Student</h1>
-    <%} %>
-    

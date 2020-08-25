@@ -1,0 +1,41 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="container">
+    <div class="form-container ">
+        <div class="form-head">
+            <h1>Admin Registration</h1>
+        </div>
+        <form action="/admin/register" method="POST">
+                <div class="form-group row">
+                    <input class="form-control col-lg col-md-12" type="text" name="name" placeholder="Accommodation Provider's Name" required>
+                </div>
+            <div class="row form-group"> 
+                <input class="col-md-12 col-lg form-control" type="tel" name="phone" placeholder="Telephone Number" required>
+                   
+            </div>
+
+            <div class="row form-group">
+                <input class="col-md-12 col-lg form-control" type="email" name="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="form-group row">
+                <input class="form-control col-md-12 col-lg" type="address" name="address" placeholder="Postal Address" >
+                
+            </div>
+        
+
+            <div class="form-group row">
+                <input class="form-control col-md-12 col-lg" type="password" name="password" placeholder="Create Password" required>
+                <input class="form-control col-md-12 col-lg" type="password" name="confirmed-password" placeholder="Confirm Password" required>
+            </div>
+
+            <div class="form-group row">
+                <input class=" form-control" type="submit" value="Register">
+                <input class="form-control" type="reset" value="Reset">
+            </div>
+       
+        </form>
+    </div>
+</div>
+
+<%-include('../partials/footer.ejs') %>

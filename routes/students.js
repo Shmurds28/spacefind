@@ -2,15 +2,15 @@ var express = require("express");
 var app = express();
 var student = require("../models/student");
 var user = require("../models/user");
-var passport                =      require("passport");
+var passport  =   require("passport");
 
 //Register Route - Get register form
-app.get("/register", function(req, res){
-    res.render("register");
+app.get("/student/register", function(req, res){
+    res.render("students/register");
 });
 
 //Register route
-app.post("/register", function(req, res){
+app.post("/student/register", function(req, res){
    var name = req.body.name;
     var surname = req.body.surname; 
     var gender = req.body.gender;
@@ -28,21 +28,34 @@ app.post("/register", function(req, res){
             //redirect back to the register page if an error is found
             res.redirect("back");
         }else{ 
-            user.register(new user({username: newStudent.studentNumber}), password, function(err, createdUser){
+            user.register(new user({username: newStudent.studentNumber, isAdmin: false}), password, function(err, createdUser){
                 if(err){
                     console.log(err);
                     redirect("back");
                 }else{
-                    createdUser.UserType = "student";
-                    passport.authenticate("local")(req, res, function(){
+                    //createdUser.UserType = "student";
+                    passport.authenticate("userLocal")(req, res, function(){
                         //redirect to the accommodations page
-                    res.render("accommodations");
+                    res.redirect("/accommodations");
                     });
                    
                 }
             });          
         }
     });
+});
+
+//Login Route - Get Login form
+app.get("/student/login", function(req, res){
+    res.render("students/login");
+});
+
+//LOGIN
+app.post("/student/login", passport.authenticate("userLocal", {
+    successRedirect: "/accommodations",
+    failureRedirect: "/student/login"
+}) , function(req, res){
+
 });
 
 module.exports = app;

@@ -24,42 +24,32 @@ nav{
     padding: 15px;
     padding-left: 0;
 }
-nav a{
-    color: white;
+
+.navbar{
+    padding-right: 50px;
 }
+
+.dropdown .dropdown-menu a:hover
+{
+  color: #fff;
+  background-color: royalblue;
+  border-color: #fff;
+}
+
 
 li i{
     margin-right: 5px;
 }
 
-nav a:hover{
-    color: red;
-    text-decoration: none;
-}
 
-nav ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
 nav li{
-    padding: 10px;
-    display: inline;
+    padding: 3px;
 }
 
 nav button{
     color: white;
 }
 
-.navbar-brand img{
-    height: 50px;
-    margin: 0;
-}
-
-.right-nav{
-    right: 0;
-    float: right;
-}
 
 .card img{
     width: 100%;
@@ -101,7 +91,7 @@ nav button{
     background-color: royalblue;
     border: 2px solid white;
 }
-.form-container input[type="submit"] {
+.form-container input[type="submit"],input[type="reset"] {
     background-color: royalblue;
     border-radius: 25px;
     color: white;
@@ -289,6 +279,7 @@ hr{
     margin-right: 25%;
     margin-top: 10%;
     padding: 25px;
+    text-align: center;
 }
 
 .landing-btns input{
@@ -299,6 +290,10 @@ hr{
     background-color: royalblue;
     border: 1px solid transparent;
     margin: 3px
+}
+
+.landing-btns input:hover{
+    background-color: red;
 }
 
 footer{

@@ -1,11 +1,11 @@
-<%- include('partials/header.ejs') %>
+<%- include('../partials/header.ejs') %>
 
 <div class="container">
     <div class="form-container ">
         <div class="form-head">
-            <h1>Register</h1>
+            <h1>Student Registration</h1>
         </div>
-        <form action="/register" method="POST">
+        <form action="/student/register" method="POST">
                 <div class="form-group row">
                     <input class="form-control col-lg col-md-12" type="text" name="name" placeholder="firstname" required>
                     <input class="form-control col-lg col-md-12" type="text" name="surname" placeholder="Surname" required>
@@ -53,4 +53,4 @@
     </div>
 </div>
 
-<%-include('partials/footer.ejs') %>
+<%-include('../partials/footer.ejs') %>

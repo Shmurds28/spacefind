@@ -7,6 +7,7 @@ var path = require("path");
 const uploadController = require("../controllers/upload");
 const upload = require("../middleware/upload");
 const Grid = require("gridfs-stream");
+var authenticationMiddleware = require("../middleware/authentication");
 
 var fs = require('fs');  
 require('dotenv/config'); 
@@ -31,7 +32,7 @@ app.get("/accommodations", function(req, res){
 });
 
 //Get accommodation registration form route
-app.get("/accommodations/new", function(req, res){
+app.get("/accommodations/new", authenticationMiddleware.isLoggedInAsAdmin , function(req, res){
     res.render("accommodations/new");
 });
 
