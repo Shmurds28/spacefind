@@ -24,15 +24,11 @@ function isLoggedInAsAdmin(req, res, next){
 }
 
 function isStudent(req, res){
-    Student.find({studentNumber: req.session.username}, function(err, found){
-        if(err){
-            return false;
-        }else{
-          
-            return false;
-            
-        }
-    });
+    if(req.isAuthenticated("userLocal") && (req.user.isAdmin == false) ){
+        return true;
+    }else{
+        false;
+    }
 };
 
 module.exports = {

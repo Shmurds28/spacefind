@@ -27,8 +27,9 @@ app.post("/student/register", function(req, res){
         if(err){
             //redirect back to the register page if an error is found
             res.redirect("back");
-        }else{ 
-            user.register(new user({username: newStudent.studentNumber, isAdmin: false}), password, function(err, createdUser){
+        }
+    });
+     user.register(new user({username: newStudent.studentNumber, isAdmin: false}), password, function(err, createdUser){
                 if(err){
                     console.log(err);
                     redirect("back");
@@ -41,8 +42,6 @@ app.post("/student/register", function(req, res){
                    
                 }
             });          
-        }
-    });
 });
 
 //Login Route - Get Login form

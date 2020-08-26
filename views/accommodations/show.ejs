@@ -9,26 +9,43 @@
                     <!-- <img class="img-thumbnail" src="/image1.jpg" alt=""> -->
                 </div>
                 <div class="col-md-6">
-                    <h4 > <%= accommodation.name %> </h4>
-                    <p><%= accommodation.description %></p>
-                    <p><i class="fas fa-phone-alt"></i> <%= accommodation.phone %></p>
-                    <p><i class="fas fa-envelope"></i> <a href="#"><%= accommodation.email %></a> </p>
+                    <div class="show-content">
+                        <h4 > <%= accommodation.name %> </h4>
+                    <p>
+                        <%= accommodation.description %>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone-alt"></i> <%= accommodation.phone %>
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope"></i> <a href="#"><%= accommodation.email %></a>
+                    </p>
 
-                    <div class="show-container-buttons">
-                        <input class="add-admin-button" type="submit" value="Add Administrator">
-                        <form action="/accommodations/<%= accommodation._id %>?_method=DELETE" method="POST">
-                            <input  class="delete-accommodation-button" type="submit" value="Delete">
-                        </form>
                     </div>
                     
+                    <% if(currentUser && currentUser.isAdmin){ %>
+                        <div class="show-container-buttons">
+                            <form action="/accommodations/<%= accommodation._id %>/newAdmin">
+                                <input class="add-admin-button" type="submit" value="Add Administrator">
+                            </form>
+                            
+                            <form action="/accommodations/<%= accommodation._id %>?_method=DELETE" method="POST">
+                                <input  class="delete-accommodation-button" type="submit" value="Delete">
+                            </form>
+                        </div>
+                    <% } %>
+     
                 </div>
             </div> 
     </div>
     <div class="card card-body residences-container">
         <h4> Available residences from <%= accommodation.name %> </h4>
+        <% if(currentUser && currentUser.isAdmin){ %>
             <a href="/accommodations/<%= accommodation._id %>/residences/new">
                 <input class="float-right new-residence-button" type="submit" value="Add New Residence">
             </a>
+        <% } %>
+          
         <hr>
 
        <% accommodation.residences.forEach(function(residence){ %>

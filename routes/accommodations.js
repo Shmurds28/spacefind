@@ -8,6 +8,8 @@ const uploadController = require("../controllers/upload");
 const upload = require("../middleware/upload");
 const Grid = require("gridfs-stream");
 var authenticationMiddleware = require("../middleware/authentication");
+var Admin = require("../models/admin");
+var AdminUser = require("../models/adminUser");
 
 var fs = require('fs');  
 require('dotenv/config'); 
@@ -20,15 +22,36 @@ require('dotenv/config');
 
 //accommodations route
 app.get("/accommodations", function(req, res){
-    var place = req.body.place;
-   
+    
+   if( !(req.user) || !(req.user.isAdmin) ){
     Accommodation.find({}, function(err, FoundAcc){
         if(err){
             console.log(err)
         }else{
-            res.render("accommodations/accommodations", {place: place, accommodations: FoundAcc});
+            res.render("accommodations/accommodations", {accommodations: FoundAcc});
         }
     });
+   }else{
+        var adminAcommodations = [];
+        Accommodation.find({}, function(err, Found){
+            if(err){
+                console.log(err)
+            }else{
+                Found.forEach(function(accommodation){
+                    for(var i = 0; i < accommodation.administrator.length; i++){
+                        if(accommodation.administrator[i].id.equals(req.user._id)){
+                            adminAcommodations.push(accommodation);
+                           
+                            break;
+                        }
+                    }
+                });
+                
+                res.render("accommodations/accommodations", {accommodations: adminAcommodations});
+            }
+        });
+   }
+   
 });
 
 //Get accommodation registration form route
@@ -37,7 +60,7 @@ app.get("/accommodations/new", authenticationMiddleware.isLoggedInAsAdmin , func
 });
 
 //post accommodation to the database route
-app.post("/accommodations/new", uploadController.uploadFile  ,function(req, res){
+app.post("/accommodations/new", authenticationMiddleware.isLoggedInAsAdmin, uploadController.uploadFile  ,function(req, res){
     // console.log(req.file);
     var name = req.body.name;
     var image = req.body.image;
@@ -50,16 +73,21 @@ app.post("/accommodations/new", uploadController.uploadFile  ,function(req, res)
         contentType: 'image/png'
     }
    
-    console.log(req.file.filename);
+    var administrator = {
+        id: req.user._id,
+        username: req.user.username
+    };
 
     var newAccammodation = {name: name, address: address, phone: phone, email: email, description: description, image: image};
     // res.render("test", {new: newAccammodation});
-  
+    
     Accommodation.create(newAccammodation, function(err, newlyCreated){
         if(err){
             console.log(err);
             res.redirect("back");
         }else{
+            newlyCreated.administrator.push(administrator);
+            newlyCreated.save();
             res.redirect("/accommodations");
         }
     });
@@ -80,6 +108,55 @@ app.get("/accommodations/:id", function(req, res){
        }
    });
    
+});
+
+//Add new administrator for accommodation - get form
+app.get("/accommodations/:id/newAdmin", function(req, res){
+    Accommodation.findById(req.params.id).populate("residences").exec(function(err, foundAcc){
+        if(err){
+            //redirect back to accommodations if there is an error
+            console.log(err);
+            res.redirect("back");
+        }else{
+            //go to the show page if accommodation is found successfully
+         res.render("accommodations/newAdmin", {accommodation: foundAcc} );
+        }
+    });
+});
+
+//Post new administrator to the accommodation
+app.post("/accommodations/:id/newAdmin", function(req, res){
+    var name = req.body.name;
+    var address = req.body.address;
+    var phone = req.body.phone;
+    var email = req.body.email;
+    var password = req.body.password;
+    var newAdmin = {name: name, address: address, phone: phone, email: email};
+    var accommodationId = req.params.id;
+    Admin.create(newAdmin, function(err, admin){
+        if(err){
+            console.log(err);
+            res.redirect("back");
+        }
+    });
+    AdminUser.register(new AdminUser({username: email, isAdmin: true}), password, function(err, newAdminUser){
+        if(err){
+            console.log(err);
+            res.redirect("/admin/register");
+        }else{
+            // res.send("hello");
+            passport.authenticate("adminLocal")(req, res, function(){
+                Accommodation.findById({accommodationId}, function(err, found){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        found.administrator.push(newAdminUser);
+                    }
+                });
+                res.redirect("/accommodations/"+ accommodationId);
+            });
+        }
+    });
 });
 
 // Delete accommodation route

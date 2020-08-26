@@ -59,14 +59,18 @@
             </p>
 
         </div>
-        <form action="/accommodations/<%= accommodation_id %>/residences/<%= residence._id %>?_method=DELETE" method="POST">
-            <input class="delete-residence-button" type="submit" value="Delete">
-        </form>
+        <% if(currentUser && currentUser.isAdmin){ %>
+            <form action="/accommodations/<%= accommodation_id %>/residences/<%= residence._id %>?_method=DELETE" method="POST">
+                <input class="delete-residence-button" type="submit" value="Delete">
+            </form>
+        <% } %>
+
         <form action="/apply" method="GET">
             <input class="apply" type="submit" value="Apply">
         </form>
         
     </div>
+</div>
 </div>
 
 <%- include('../partials/footer') %>  

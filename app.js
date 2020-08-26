@@ -66,6 +66,15 @@ app.use(function(req, res, next){
     next();
 });
 
+
+//Current User
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+  
+    next();
+});
+
+
 //landing Page Route
 app.get("/", function(req, res){
     res.render("landing");

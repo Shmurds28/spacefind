@@ -10,12 +10,24 @@ AccommodationsSchema = new mongoose.Schema({
             data: Buffer, 
             contentType: String 
         },
+    
+    administrator: [
+           {
+               id:{
+                   type: mongoose.Schema.Types.ObjectId,
+                   ref:  "adminUser"
+               },
+               username: String
+           }
+    ],
+        
     residences: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "residence"
         }
     ]
+    
 });
 
 module.exports = mongoose.model("accommodation", AccommodationsSchema);
