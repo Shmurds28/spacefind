@@ -27,7 +27,8 @@ app.get("/accommodations", function(req, res){
    if( !(req.user) || !(req.user.isAdmin) ){
     Accommodation.find({}, function(err, FoundAcc){
         if(err){
-            console.log(err)
+            console.log(err);
+            res.render("back");
         }else{
             res.render("accommodations/accommodations", {accommodations: FoundAcc});
         }
