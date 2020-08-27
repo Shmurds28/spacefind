@@ -20,7 +20,9 @@
                     <p>
                         <i class="fas fa-envelope"></i> <a href="#"><%= accommodation.email %></a>
                     </p>
-
+                    <p>
+                        <%= accommodation.administrator %>
+                    </p>
                     </div>
                     
                     <% if(currentUser && currentUser.isAdmin){ %>
@@ -45,12 +47,21 @@
                 <input class="float-right new-residence-button" type="submit" value="Add New Residence">
             </a>
         <% } %>
-          
+          <form action="" method="get">
+              <div class="form-group">
+                  <div class="row">
+                    <input class="form-control col-md-4" type="search" name="filter" id="filter" placeholder="Enter your budget price">
+                    <input class="form-control col-md-4" type="submit" value="search">
+                  </div>
+                
+              </div>
+             
+          </form>
         <hr>
 
        <% accommodation.residences.forEach(function(residence){ %>
             <div class="residence">
-                <strong> <%= residence.name %> - R<%= residence.price %> </strong>
+                <strong> <span class="res-name"><%= residence.name %></span> - <span class="res-price">R<%= residence.price %></span>  </strong>
                 
                 <form action="/apply" method="GET">
                     <input class="float-right view-residence-button" type="submit" value="Apply">
@@ -59,8 +70,10 @@
                     <input class="float-right view-residence-button" type="submit" value="View">
                 </form>
              
+                <strong>
+                    <p><%= residence.type %> room - <span class="res-status">Available</span></p>
+                </strong>
                 
-                <p><%= residence.type %> room </p>
             </div>
        
        <% }) %>

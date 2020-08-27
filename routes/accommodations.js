@@ -10,6 +10,7 @@ const Grid = require("gridfs-stream");
 var authenticationMiddleware = require("../middleware/authentication");
 var Admin = require("../models/admin");
 var AdminUser = require("../models/adminUser");
+var passport = require("passport");
 
 var fs = require('fs');  
 require('dotenv/config'); 
@@ -150,7 +151,12 @@ app.post("/accommodations/:id/newAdmin", function(req, res){
                     if(err){
                         console.log(err);
                     }else{
-                        found.administrator.push(newAdminUser);
+                        var newUser = {
+                            id: newAdminUser._id,
+                            username: newAdminUser.username
+                        };
+                        found.administrator.push(newUser);
+                        found.save();
                     }
                 });
                 res.redirect("/accommodations/"+ accommodationId);

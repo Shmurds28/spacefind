@@ -14,8 +14,13 @@
 </div> -->
 
 <div class="landing-btns">
-    <input type="submit" value="View Accommodations">
-    <input type="submit" value="Track Status">
+    <form action="/accommodations" method="get">
+        <input type="submit" value="View Accommodations">
+    </form>
+    <form action="/status" method="get">
+        <input type="submit" value="Track Status">
+    </form>
+    
 </div>
 
 <%- include('partials/footer.ejs') %>

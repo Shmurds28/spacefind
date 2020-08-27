@@ -218,6 +218,17 @@ hr{
     border: 2px solid white;
 }
 
+.res-name{
+    color: royalblue;
+}
+.res-price{
+    color: red;
+}
+
+.res-status{
+    color:orange;
+}
+
 /* Styling View Residence Page */
 .view-container{
     background-color: white;
@@ -318,6 +329,10 @@ hr{
     background-color: red;
 }
 
+.landing-btns form{
+    display: inline;
+}
+
 /* Footer Styling */
 
 footer{
@@ -373,7 +388,7 @@ footer a:hover{
     }
 
     .show-container-buttons{
-        margin-top: 200px;
+        margin-top: 50px !important;
         
     }
 
