@@ -6,15 +6,18 @@
         <div class="row">      
             <% accommodations.forEach(function(accommodation){ %> 
                 <div class="card col-md-6">
-                    <img src="data:accommodation/<%=accommodation.image.contentType%>;base64, 
-                    <%=accommodation.image.data.toString('base64')%>" class="card-img-top" alt="..."> 
+                    <a href="/accommodations/<%= accommodation._id %>">
+                        <img src="data:accommodation/<%=accommodation.image.contentType%>;base64, 
+                        <%=accommodation.image.data.toString('base64')%>" class="card-img-top" alt="..."> 
+                    </a>
+                    
                     <!-- <img src="images/<%= accommodation.image.filename%>" class="card-img-top" alt="..."> -->
                     <div class="card-body">
                       <h5 class="card-title"><%= accommodation.name %></h5>
                       <p class="card-text"><%= accommodation.description.substr(0, 200) %>...</p>
-                      <form class="show-button-form" action="/accommodations/<%= accommodation._id %>" method="get">
+                      <!-- <form class="show-button-form" action="/accommodations/<%= accommodation._id %>" method="get">
                         <input class="info-button" type="submit" value="More Info">
-                    </form>
+                    </form> -->
                     </div>
                 </div>
                 <hr>

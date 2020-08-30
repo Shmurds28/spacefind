@@ -63,11 +63,20 @@
             <form action="/accommodations/<%= accommodation_id %>/residences/<%= residence._id %>?_method=DELETE" method="POST">
                 <input class="delete-residence-button" type="submit" value="Delete">
             </form>
+
+            <form action="/accommodations/<%= accommodation_id %>/residences/<%= residence._id %>/edit" method="GET">
+                <input class="edit-button" type="submit" value="Edit">
+            </form>
+
+        <% }else{ %>
+
+            <form action="/apply" method="GET">
+                <input class="apply" type="submit" value="Apply">
+            </form>
+
         <% } %>
 
-        <form action="/apply" method="GET">
-            <input class="apply" type="submit" value="Apply">
-        </form>
+        
         
     </div>
 </div>

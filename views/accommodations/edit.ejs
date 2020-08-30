@@ -3,17 +3,17 @@
 <div class="container">
     <div class="form-container">
         <div class="form-head">
-            <h1>New Residence Registration</h1>
+            <h1>Edit <%= accommodation.name %> </h1>
         </div>
-        <form action="/accommodations/new" method="POST" enctype="multipart/form-data">
+        <form action="/accommodations/<%= accommodation._id %>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
-                <input class="form-control col" type="text" name="name" placeholder="Accommodation Name" required>
+                <input class="form-control col" type="text" name="name" value="<%= accommodation.name %>" required>
             </div>
             <div class="form-group row">
-                <input class="form-control col" type="address" name="address" placeholder=" Address" required>
+                <input class="form-control col" type="address" name="address" value="<%= accommodation.address %>" required>
             </div>
             <div class="form-group row">
-                <input class="form-control col" type="tel" name="phone" placeholder="Telephone Number" required>
+                <input class="form-control col" type="tel" name="phone" value="<%= accommodation.phone %>" required>
             </div>
                 
             <div class="form-group">
@@ -23,10 +23,10 @@
                 </div>
             </div>
             <div class="form-group row">
-                <input class="form-control col" type="email" name="email" placeholder="Email Address" required>
+                <input class="form-control col" type="email" name="email" value="<%= accommodation.email %>" required>
             </div>
             <div class="form-group row">
-                <textarea class="form-control col" name="description" cols="30" rows="10" placeholder="desrciption"></textarea>
+                <textarea class="form-control col" name="description" cols="30" rows="10"><%= accommodation.description%></textarea>
             </div>
             <div class="form-group row">
                 <input class="form-control" type="submit" value="Submit">

@@ -18,17 +18,14 @@
                         <i class="fas fa-phone-alt"></i> <%= accommodation.phone %>
                     </p>
                     <p>
-                        <i class="fas fa-envelope"></i> <a href="#"><%= accommodation.email %></a>
-                    </p>
-                    <p>
-                        <%= accommodation.administrator %>
+                        <i class="fas fa-envelope"></i> <a href="mailto:<%= accommodation.email %>"><%= accommodation.email %></a>
                     </p>
                     </div>
                     
                     <% if(currentUser && currentUser.isAdmin){ %>
                         <div class="show-container-buttons">
-                            <form action="/accommodations/<%= accommodation._id %>/newAdmin">
-                                <input class="add-admin-button" type="submit" value="Add Administrator">
+                            <form action="/accommodations/<%= accommodation._id %>/edit" method="GET">
+                                <input class="edit-button" type="submit" value="Edit">
                             </form>
                             
                             <form action="/accommodations/<%= accommodation._id %>?_method=DELETE" method="POST">
@@ -41,13 +38,13 @@
             </div> 
     </div>
     <div class="card card-body residences-container">
-        <h4> Available residences from <%= accommodation.name %> </h4>
+        <h4> Available rooms from <%= accommodation.name %> </h4>
         <% if(currentUser && currentUser.isAdmin){ %>
             <a href="/accommodations/<%= accommodation._id %>/residences/new">
                 <input class="float-right new-residence-button" type="submit" value="Add New Residence">
             </a>
         <% } %>
-          <form action="" method="get">
+          <!-- <form action="" method="get">
               <div class="form-group">
                   <div class="row">
                     <input class="form-control col-md-4" type="search" name="filter" id="filter" placeholder="Enter your budget price">
@@ -56,16 +53,16 @@
                 
               </div>
              
-          </form>
+          </form> -->
         <hr>
 
        <% accommodation.residences.forEach(function(residence){ %>
             <div class="residence">
                 <strong> <span class="res-name"><%= residence.name %></span> - <span class="res-price">R<%= residence.price %></span>  </strong>
                 
-                <form action="/apply" method="GET">
+                <!-- <form action="/apply" method="GET">
                     <input class="float-right view-residence-button" type="submit" value="Apply">
-                </form>
+                </form> -->
                 <form action="/accommodations/<%= accommodation._id %>/residences/<%= residence._id %>" method="get">
                     <input class="float-right view-residence-button" type="submit" value="View">
                 </form>

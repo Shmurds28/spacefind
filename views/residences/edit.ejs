@@ -1,0 +1,45 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="container">
+    <div class="form-container">
+        <div class="form-head">
+            <h1>Edit <%= residence.name %></h1>
+        </div>
+        <form action="/accommodations/<%= accommodation_id %>/residences/<%= residence._id %>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div class="form-group row">
+                <input class="form-control col" type="text" name="residence[name]" value="<%= residence.name %>" required>
+            </div>
+            <div class="form-group row">
+                <input class="form-control col" type="address" name="residence[address]" value="<%= residence.address %>" required>
+            </div>
+            <div class="form-group row">
+                <input class="form-control col" type="number" name="residence[NoOfStudents]" value="<%= residence.NoOfStudents %>" required>
+            </div>
+            <div class="form-group row">
+                <input class="form-control col" type="number" name="residence[price]" value="<%= residence.price %>" required>
+            </div>
+            <div class="form-group row">
+                <input class="form-control col" type="text" name="residence[type]" value="<%= residence.type %>" required>
+            </div>
+
+            <div class="form-group row">
+                <div class="custom-file form-control col">
+                    <input type="file" name="multi-files" id="input-files" class="custom-file-input" multiple required accept="image/png">
+                    <label for="file" class="custom-file-label" >Choose Residence Images</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <textarea class="form-control col" name="residence[description]" id="description" cols="30" rows="10" placeholder="Write residence description..." required><%= residence.description %></textarea>
+                
+            </div>
+            <div class="form-group row">
+                <input class="form-control" type="submit" value="Submit">
+                <input class="form-control" type="submit" value="Reset">
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+
+<%-include('../partials/footer.ejs') %>
