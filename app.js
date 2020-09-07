@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var flash       =require("connect-flash");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var methodOverride = require("method-override");
@@ -25,6 +26,7 @@ app.use(express.static("public"));
 app.use(express.static("Images"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
+app.use(flash());
 
 //Authentication Configuration
 app.use(require("express-session")({
@@ -60,17 +62,12 @@ passport.deserializeUser(function(adminuser, done) {
 });
 
 
-app.use(function(req, res, next){
-    res.locals.isStudent = authenticateMiddleware.isStudent;
-
-    next();
-});
-
 
 //Current User
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
-  
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 
@@ -97,6 +94,7 @@ app.get("/test", function(req, res){
 //LOGOUT
 app.get("/logout", function(req, res){
     req.logout();
+    req.flash("success", "logged you out");
     res.redirect("/");
 });
 
@@ -111,8 +109,6 @@ app.use(studentRoutes);
 app.use(adminRoutes);
 app.use(accommodationRoutes);
 app.use(residenceRoutes);
-
-
 
 
 

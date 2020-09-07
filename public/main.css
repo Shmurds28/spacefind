@@ -26,14 +26,28 @@ nav{
 }
 
 .navbar{
-    padding-right: 50px;
+    padding-right: 80px;
 }
-nav li{
-    padding: 3px;
+
+li a:hover{
+    color: red;
 }
+
 
 nav button{
     color: white;
+}
+
+#space{
+    color: royalblue;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#find{
+    color: red;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 /* Dropdown Hover styling */
@@ -42,6 +56,15 @@ nav button{
   color: #fff;
   background-color: royalblue;
   border-color: #fff;
+}
+
+/* Flash message styling */
+.alert{
+    margin-top: 20px;
+    opacity: 98%;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: center;
 }
 
 /* Styling icons */

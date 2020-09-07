@@ -10,7 +10,8 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated("userLocal")){
         return next();
     }else{
-        res.redirect("student/login");
+        req.flash("error", "Please Login First");
+        res.redirect("/student/login");
     }
 };
 
@@ -19,7 +20,8 @@ function isLoggedInAsAdmin(req, res, next){
     if(req.isAuthenticated("adminLocal") && (req.user.isAdmin) ){
         return next();
     }else{
-        res.render("admins/login");
+        req.flash("error", "You need to be logged in as an administrator to do that");
+        res.redirect("/admin/login");
     }
 }
 

@@ -31,8 +31,17 @@ app.post("/student/register", function(req, res){
     });
      user.register(new user({username: newStudent.studentNumber, isAdmin: false}), password, function(err, createdUser){
                 if(err){
+                    req.flash("error", err.message);
                     console.log(err);
-                    redirect("back");
+                    student.findByIdAndDelete(newStudent._id,function(err){
+                        if(err){
+                            console.log(err);
+                            return res.render("students/register");
+                        }else{
+                            res.redirect("/student/register");
+                        }
+                    });
+                   
                 }else{
                     //createdUser.UserType = "student";
                     passport.authenticate("userLocal")(req, res, function(){
