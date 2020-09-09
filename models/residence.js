@@ -12,6 +12,7 @@ ResidencesSchema = new mongoose.Schema({
         }
     ],
     type: String,
+    status: Boolean,
     description: String
 });
 

@@ -28,7 +28,7 @@ app.get("/accommodations", function(req, res){
     Accommodation.find({}, function(err, FoundAcc){
         if(err){
             console.log(err);
-            res.render("back");
+            res.send(err);
         }else{
             res.render("accommodations/accommodations", {accommodations: FoundAcc});
         }

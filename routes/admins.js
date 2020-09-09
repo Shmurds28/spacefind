@@ -47,10 +47,11 @@ app.get("/admin/login", function(req, res){
 
 
 app.post("/admin/login", passport.authenticate("adminLocal",{
-    successRedirect: "/",
-    failureRedirect: "/admin/login"
-}), function(req, res){
+    successRedirect: "/accommodations",
+    failureRedirect: "/admin/login",
 
+}), function(req, res){
+    
 });
 
 module.exports = app;

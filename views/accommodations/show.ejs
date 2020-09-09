@@ -41,7 +41,7 @@
         <h4> Available rooms from <%= accommodation.name %> </h4>
         <% if(currentUser && currentUser.isAdmin){ %>
             <a href="/accommodations/<%= accommodation._id %>/residences/new">
-                <input class="float-right new-residence-button" type="submit" value="Add New Residence">
+                <input class="float-right new-room-button" type="submit" value="Add New Room">
             </a>
         <% } %>
           <!-- <form action="" method="get">
@@ -68,7 +68,7 @@
                 </form>
              
                 <strong>
-                    <p><%= residence.type %> room - <span class="res-status">Available</span></p>
+                    <p><%= residence.type %> room - <span class="res-status"> <%= residence.status %></span></p>
                 </strong>
                 
             </div>
